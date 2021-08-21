@@ -4,14 +4,16 @@ import * as game_config from '../configs/game-config.json'
 import BasicUnit from "./BasicUnit";
 import { BasicAnimatedUnit } from "./BasicAnimatedUnit";
 import SlicedUnit from "./SlicedUnit";
-// window.PIXI = PIXI; //* lemmy try without this row
+window.PIXI = PIXI; //* lemmy try without this row
 
 
 export const objects: any = [];
 
-// const graphic = new BasicUnit();
-// const animatedGraphic = new BasicAnimatedUnit();
-objects.push(new SlicedUnit({x: 40, y:40}, {width: 30, height: 30}, 0X000000));
+objects.push(new SlicedUnit({x: 40, y: 40}, {width: 130, height: 130}, 0X000000, null, 6));
+objects.push(new SlicedUnit({x: 340, y: 340}, {width: 30, height: 30}, 0X000000, null, 12));
+objects.push(new SlicedUnit({x: 620, y: 40}, {width: 30, height: 30}, 0X000000, null, 20));
+
+
 
 // for (let i = 0; i < 800; i += 23) {
 //     for(let j = 0; j < 600; j += 23) {

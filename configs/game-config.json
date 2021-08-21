@@ -5,5 +5,5 @@
         "color" :  "0x000000"
     },
     "elementsScaling": 29,
-    "globalUpdateInterval": 10
+    "globalUpdateInterval": 1
 }

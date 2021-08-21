@@ -9,9 +9,9 @@ export default class App extends PIXI.Application {
     private static timeTt: number = 0;
 
     constructor(appConfig: any) {
-        // if (App.instance) {
-        //     return App.instance;
-        // };
+        if (App.instance) {
+            return App.instance;
+        };
 
         super({ width: appConfig.width, height: appConfig.height, backgroundColor: appConfig.color });
 
@@ -26,17 +26,24 @@ export default class App extends PIXI.Application {
     private static gameLoopFunction(time: number) {
         ++App.timeTt;
         if (App.timeTt % game_config.globalUpdateInterval === 0) {
-            App.stageUpdate()
-        }
+            App.stageUpdate();
+        };
     };
 
     static stageUpdate() {
-        App.instance.stage.removeChildren();
+        // App.instance.stage.removeChildren();
+            // objects.forEach(object => {
+            //     object.update();
+            //     App.instance.stage.addChild(object.view)
+            // }
+            // );
+
             objects.forEach(object => {
-                object.update();
-                App.instance.stage.addChild(object.view)
+                object.update(App);
             }
             );
+
+        
         
     };
 
