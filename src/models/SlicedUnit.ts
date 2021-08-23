@@ -6,6 +6,7 @@ import BasicUnit from "./BasicUnit";
 import App from "../app";
 import { UnitDirection } from "../enums/UnitDirectionsEnums";
 import { UnitMode } from '../enums/UnitModesEnums';
+import { UNIT_MODEL } from "../index";
 
 export default class SlicedUnit extends BasicUnit {
     public static unitsCreated: number = 0;
@@ -40,7 +41,7 @@ export default class SlicedUnit extends BasicUnit {
     };
     framesInit(unitMode) {
         const tempRandColor: number = this.getRandomColor();
-        unit_config.player1[unitMode].frames.forEach(frame => {
+        UNIT_MODEL.animationFrames.player.modes.climbing.frames.forEach(frame => {
             this.frames.push(this.createFrame(
                 frame.id,
                 frame.elements,
