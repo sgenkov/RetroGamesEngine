@@ -27,10 +27,8 @@ export default class UnitModel {
     }
     private createFrame(frameIndex, unitMode) {
         const elements = [];
-        // console.log(this.matrix.player.modes[unitMode].frames[index].slices)
         this.matrix.player.modes[unitMode].frames[frameIndex].slices.forEach((slice, sliceIndex) => {
             slice.split("").forEach((pixel, pixelIndex) => {
-                // console.log(pixel);
                 if (pixel === "1") {
                     elements.push({
                         "x": pixelIndex,
@@ -38,13 +36,10 @@ export default class UnitModel {
                         "width": 1,
                         "height": 1
                     })
-
                 };
-
-            })
-
-
-        })
+            });
+        });
+        
         return {
             "id": frameIndex,
             "elements": elements

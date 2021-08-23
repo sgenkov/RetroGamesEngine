@@ -41,7 +41,7 @@ export default class SlicedUnit extends BasicUnit {
     };
     framesInit(unitMode) {
         const tempRandColor: number = this.getRandomColor();
-        UNIT_MODEL.animationFrames.player.modes.climbing.frames.forEach(frame => {
+        UNIT_MODEL.animationFrames.player.modes[this.unitMode].frames.forEach(frame => {
             this.frames.push(this.createFrame(
                 frame.id,
                 frame.elements,
