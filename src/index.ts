@@ -1,17 +1,27 @@
 import * as PIXI from "pixi.js";
 import App from "./app";
 import * as game_config from '../configs/game-config.json'
-import BasicUnit from "./BasicUnit";
-import { BasicAnimatedUnit } from "./BasicAnimatedUnit";
-import SlicedUnit from "./SlicedUnit";
+import SlicedUnit from "./models/SlicedUnit";
+import { UnitDirection } from "./enums/UnitDirectionsEnums";
+import { UnitMode } from "./enums/UnitModesEnums";
+import { rasterworks } from "./rasterworks/Rasterworks"
+
+
 window.PIXI = PIXI; //* lemmy try without this row
 
-
 export const objects: any = [];
+if(1) {
+    objects.push(new SlicedUnit({x: 40, y: 40}, {width: 130, height: 130}, 0X000000, UnitDirection.Left, 6, UnitMode.Walking));
+    objects.push(new SlicedUnit({x: 340, y: 40}, {width: 30, height: 30}, 0X000000, UnitDirection.Left, 12, UnitMode.Walking));
+    objects.push(new SlicedUnit({x: 620, y: 40}, {width: 30, height: 30}, 0X000000, UnitDirection.Right, 20, UnitMode.Walking));
+    objects.push(new SlicedUnit({x: 40, y: 340}, {width: 30, height: 30}, 0X000000, UnitDirection.Right, 20, UnitMode.Climbing));
+} else {
+    objects.push(new SlicedUnit({x: 40, y: 40}, {width: 130, height: 130}, 0X000000, UnitDirection.Right, 6));
+    objects.push(new SlicedUnit({x: 340, y: 340}, {width: 30, height: 30}, 0X000000, UnitDirection.Right, 12));
+    objects.push(new SlicedUnit({x: 620, y: 40}, {width: 30, height: 30}, 0X000000, UnitDirection.Left, 20));
+};
 
-objects.push(new SlicedUnit({x: 40, y: 40}, {width: 130, height: 130}, 0X000000, null, 6));
-objects.push(new SlicedUnit({x: 340, y: 340}, {width: 30, height: 30}, 0X000000, null, 12));
-objects.push(new SlicedUnit({x: 620, y: 40}, {width: 30, height: 30}, 0X000000, null, 20));
+
 
 
 

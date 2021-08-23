@@ -1,6 +1,6 @@
 import { Graphics } from 'pixi.js';
-import unit_config from '../configs/unit-config.json';
-import App from './app';
+import unit_config from '../../configs/unit-config.json';
+import App from '../app';
 export default class BasicUnit {
     public static unitsCreated: number = 0;
 
@@ -17,7 +17,7 @@ export default class BasicUnit {
         this.color = color;
     };
 
-    framesInit() {
+    framesInit(unitMode) {
         const tempRandColor: number = this.getRandomColor();
         unit_config.player.frames.forEach(frame => {
             this.frames.push(this.createFrame(

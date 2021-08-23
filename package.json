@@ -16,6 +16,7 @@
   "dependencies": {
     "@pixi/core": "^5.3.3",
     "@pixi/graphics": "^5.3.3",
+    "@types/node": "^16.7.1",
     "pixi.js": "^5.3.3",
     "pixi.js-legacy": "^5.3.9"
   },
