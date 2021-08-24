@@ -2,8 +2,7 @@
     "player": {
         "modes": {
             "walking": {
-                "frames": [
-                    
+                "frames": [                   
                 ]
             },
             "climbing": {
@@ -11,33 +10,27 @@
                 ]
             },
             "rappelling": {
-                "frames": [
-                    
+                "frames": [                  
                 ]
             },
             "falling": {
-                "frames": [
-                    
+                "frames": [                  
                 ]
             },
             "digging": {
-                "frames": [
-                    
+                "frames": [                  
                 ]
             },
             "trapped": {
-                "frames": [
-                    
+                "frames": [                   
                 ]
             }
-
         }
     },
     "enemy": {
         "modes": {
             "walking": {
                 "frames": [
-                    
                 ]
             },
             "climbing": {
@@ -45,26 +38,21 @@
                 ]
             },
             "rappelling": {
-                "frames": [
-                    
+                "frames": [                   
                 ]
             },
             "falling": {
-                "frames": [
-                    
+                "frames": [                 
                 ]
             },
             "digging": {
-                "frames": [
-                    
+                "frames": [                
                 ]
             },
             "trapped": {
-                "frames": [
-                    
+                "frames": [             
                 ]
             }
-
         }
     }
 

@@ -12,16 +12,29 @@ window.PIXI = PIXI; //* lemmy try without this row
 
 export const UNIT_MODEL = new UnitModel();
 export const objects: any = [];
-if(1) {
-    objects.push(new SlicedUnit({x: 40, y: 40}, {width: 130, height: 130}, 0X000000, UnitDirection.Right, 6, UnitMode.Walking));
-    // objects.push(new SlicedUnit({x: 340, y: 40}, {width: 30, height: 30}, 0X000000, UnitDirection.Left, 12, UnitMode.Falling));
-    // objects.push(new SlicedUnit({x: 620, y: 40}, {width: 30, height: 30}, 0X000000, UnitDirection.Right, 20, UnitMode.Rappelling));
-    objects.push(new SlicedUnit({x: 40, y: 390}, {width: 30, height: 30}, 0X000000, UnitDirection.Right, 20, UnitMode.Climbing));
-} else {
-    objects.push(new SlicedUnit({x: 40, y: 40}, {width: 130, height: 130}, 0X000000, UnitDirection.Right, 6));
-    objects.push(new SlicedUnit({x: 340, y: 340}, {width: 30, height: 30}, 0X000000, UnitDirection.Right, 12));
-    objects.push(new SlicedUnit({x: 620, y: 40}, {width: 30, height: 30}, 0X000000, UnitDirection.Left, 20));
-};
+
+objects.push(
+    new SlicedUnit(
+        { x: 40, y: 40 },
+        { width: 130, height: 130 },
+        0X000000,
+        UnitDirection.Right,
+        6,
+        UnitMode.Walking,
+        UnitType.Player
+    ));
+// objects.push(new SlicedUnit({x: 340, y: 40}, {width: 30, height: 30}, 0X000000, UnitDirection.Left, 12, UnitMode.Falling));
+// objects.push(new SlicedUnit({x: 620, y: 40}, {width: 30, height: 30}, 0X000000, UnitDirection.Right, 20, UnitMode.Rappelling));
+objects.push(
+    new SlicedUnit(
+        { x: 40, y: 390 }, 
+        { width: 30, height: 30 }, 
+        0X000000, 
+        UnitDirection.Right, 
+        20, 
+        UnitMode.Climbing
+        ));
+
 
 
 
