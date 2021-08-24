@@ -27,7 +27,7 @@ export default class SlicedUnit extends BasicUnit {
     ) {
 
         super(position, size, color);
-        // console.log(direction);
+        console.log(UNIT_MODEL);
         this.baseUpdateInterval = baseUpdateInterval;
         this.updateInterval = this.baseUpdateInterval;
         this.direction = direction;

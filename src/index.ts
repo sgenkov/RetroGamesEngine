@@ -5,6 +5,7 @@ import SlicedUnit from "./models/SlicedUnit";
 import { UnitDirection } from "./enums/UnitDirectionsEnums";
 import { UnitMode } from "./enums/UnitModesEnums";
 import UnitModel from "./models/UnitModel";
+import { UnitType } from "./enums/UnitTypeEnums";
 
 
 window.PIXI = PIXI; //* lemmy try without this row

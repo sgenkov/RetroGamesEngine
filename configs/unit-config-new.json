@@ -32,5 +32,40 @@
             }
 
         }
+    },
+    "enemy": {
+        "modes": {
+            "walking": {
+                "frames": [
+                    
+                ]
+            },
+            "climbing": {
+                "frames": [
+                ]
+            },
+            "rappelling": {
+                "frames": [
+                    
+                ]
+            },
+            "falling": {
+                "frames": [
+                    
+                ]
+            },
+            "digging": {
+                "frames": [
+                    
+                ]
+            },
+            "trapped": {
+                "frames": [
+                    
+                ]
+            }
+
+        }
     }
+
 }
