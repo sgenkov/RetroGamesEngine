@@ -3,7 +3,7 @@ import { UnitDirection } from "../enums/UnitDirectionsEnums";
 import UnitModel from "../models/UnitModel";
 import { getRandomColor } from "../utils/utils";
 
-export default class VisualObectsProcessor {
+export default class VisualObjectsProcessor {
     private UNIT_MODEL = new UnitModel()
     framesInit(unit) {
         const { unitType, unitMode, scaling, direction, fullWidth, position } = unit;

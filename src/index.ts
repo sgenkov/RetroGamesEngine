@@ -1,22 +1,22 @@
 import * as PIXI from "pixi.js";
 import App from "./app";
 import * as game_config from '../configs/game-config.json'
-import SlicedObject from "./models/SlicedObject";
+import BasicSlicedObject from "./models/BasicSlicedObject";
 import { UnitDirection } from "./enums/UnitDirectionsEnums";
 import { UnitMode } from "./enums/UnitModesEnums";
 import UnitModel from "./models/UnitModel";
 import { UnitType } from "./enums/UnitTypeEnums";
-import VisualObectsProcessor from "./processors/VisualObectsProcessor";
+import VisualObjectsProcessor from "./processors/VisualObjectsProcessor";
 
 
 window.PIXI = PIXI; //* lemmy try without this row
 
-export const visualObectsProcessor = new VisualObectsProcessor();
+export const visualObjectsProcessor = new VisualObjectsProcessor();
 
 export const objects: any = [];
 
 1 && objects.push(
-    new SlicedObject(
+    new BasicSlicedObject(
         { x: 40, y: 40 },
         { width: 130, height: 130 },
         0X000000,
@@ -25,20 +25,20 @@ export const objects: any = [];
         UnitMode.Walking,
         UnitType.Player
     ));
-// objects.push(new SlicedObject({x: 340, y: 40}, {width: 30, height: 30}, 0X000000, UnitDirection.Left, 12, UnitMode.Falling));
-// objects.push(new SlicedObject({x: 620, y: 40}, {width: 30, height: 30}, 0X000000, UnitDirection.Right, 20, UnitMode.Rappelling));
-0 && objects.push(
-    new SlicedObject(
+// objects.push(new BasicSlicedObject({x: 340, y: 40}, {width: 30, height: 30}, 0X000000, UnitDirection.Left, 12, UnitMode.Falling));
+// objects.push(new BasicSlicedObject({x: 620, y: 40}, {width: 30, height: 30}, 0X000000, UnitDirection.Right, 20, UnitMode.Rappelling));
+1 && objects.push(
+    new BasicSlicedObject(
         { x: 40, y: 390 }, 
         { width: 30, height: 30 }, 
         0X000000, 
-        UnitDirection.Right, 
+        UnitDirection.Left, 
         20, 
         UnitMode.Walking,
         UnitType.Enemy
         ));
 
-1 && objects.push(
+0 && objects.push(
     
 );
 

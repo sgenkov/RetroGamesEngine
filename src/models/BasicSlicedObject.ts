@@ -2,15 +2,15 @@ import { Graphics } from "pixi.js";
 import game_config from '../../configs/game-config.json';
 import { UnitDirection } from "../enums/UnitDirectionsEnums";
 import { UnitMode } from '../enums/UnitModesEnums';
-import { visualObectsProcessor } from "../index";
+import { visualObjectsProcessor } from "../index";
 import { UnitType } from "../enums/UnitTypeEnums";
 
-export default class SlicedObject {
+export default class BasicSlicedObject {
     private scaling: number = game_config.elementsScaling;
     private direction: string;
     private baseUpdateInterval: number = 46; //TODO move to config
     private updateInterval: number;
-    private fullWidth = 6;
+    private fullWidth = 10; //* How many pixels the unit width is
     private unitMode: UnitMode;
     private unitType: UnitType;
     private _currentFrameIndex: number = 0;
@@ -38,7 +38,7 @@ export default class SlicedObject {
         this.direction = direction;
         this.unitMode = unitMode;
         this.unitType = unitType;
-        this.frames = visualObectsProcessor.framesInit(this);
+        this.frames = visualObjectsProcessor.framesInit(this);
         this.view = this.frames[0];
     };
 
