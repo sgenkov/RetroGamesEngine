@@ -32,19 +32,16 @@ export default class App extends PIXI.Application {
 
     static stageUpdate() {
         // App.instance.stage.removeChildren();
-            // objects.forEach(object => {
-            //     object.update();
-            //     App.instance.stage.addChild(object.view)
-            // }
-            // );
+        // objects.forEach(object => {
+        //     object.update();
+        //     App.instance.stage.addChild(object.view)
+        // }
+        // );
 
-            objects.forEach(object => {
-                object.update(App);
-            }
-            );
-
-        
-        
+        objects.forEach(object => {
+            object.update(this);
+        }
+        );
     };
 
 };
