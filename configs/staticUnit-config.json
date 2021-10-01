@@ -1,0 +1,59 @@
+{
+    "dirt": {
+        "modes": {
+            "default": {
+                "frames": [                   
+                ]
+            }
+        }
+    },
+    "concrete": {
+        "modes": {
+            "default": {
+                "frames": [                   
+                ]
+            }
+        }
+    },
+    "ladder": {
+        "modes": {
+            "default": {
+                "frames": [                   
+                ]
+            }
+        }
+    },
+    "rod": {
+        "modes": {
+            "default": {
+                "frames": [                   
+                ]
+            }
+        }
+    },
+    "gold": {
+        "modes": {
+            "default": {
+                "frames": [                   
+                ]
+            }
+        }
+    },
+    "hole": {
+        "modes": {
+            "default": {
+                "frames": [                   
+                ]
+            }
+        }
+    },
+    "air": {
+        "modes": {
+            "default": {
+                "frames": [                   
+                ]
+            }
+        }
+    }
+    
+}

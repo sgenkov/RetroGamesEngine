@@ -4,5 +4,6 @@ export enum UnitMode {
     "Rappelling" = "rappelling",
     "Falling" = "falling",
     "Digging" = "digging",
-    "Trapped" = "trapped"
+    "Trapped" = "trapped",
+    "Default" = "default"
 };
