@@ -4,7 +4,6 @@ import { UnitType } from "../enums/UnitTypeEnums";
 import BasicSlicedObject from "./BasicSlicedObject";
 import game_config from '../../configs/game-config.json';
 import { visualObjectsProcessor } from "..";
-import { StaticObjectType } from "../enums/StaticObjectTypeEnums";
 import { ObjectType } from "../enums/ObjectTypeEnums";
 
 export default class LiveUnit extends BasicSlicedObject {

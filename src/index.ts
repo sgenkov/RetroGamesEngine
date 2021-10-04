@@ -10,15 +10,23 @@ import VisualObjectsProcessor from "./processors/VisualObjectsProcessor";
 import LiveUnit from "./models/LiveUnit";
 import StaticUnit from "./models/StaticUnit";
 import { StaticObjectType } from "./enums/StaticObjectTypeEnums";
+import levels from "../resources/levels.json";
+import LevelFactory from "./factories/LevelFactory";
+import LevelProcessor from "./processors/LevelProcessor";
+import UnitFactory from "./factories/UnitFactory";
 
 
 window.PIXI = PIXI; //* lemmy try without this row
 
 export const visualObjectsProcessor = new VisualObjectsProcessor();
+const testLevelFactory = new LevelFactory();
+const testUnitFactory = new UnitFactory();
 
 export const objects: any = [];
 
-1 && objects.push( //* Player
+const testObjArray = [ 1, 0, 0, 0, 0, 0, 0, ];
+
+testObjArray[0] && objects.push( //* Player
     new LiveUnit(
         { x: 40, y: 40 },
         { width: 130, height: 130 },
@@ -28,74 +36,79 @@ export const objects: any = [];
         UnitMode.Walking,
         UnitType.Player
     ));
-// objects.push(new BasicSlicedObject({x: 340, y: 40}, {width: 30, height: 30}, 0X000000, UnitDirection.Left, 12, UnitMode.Falling));
-// objects.push(new BasicSlicedObject({x: 620, y: 40}, {width: 30, height: 30}, 0X000000, UnitDirection.Right, 20, UnitMode.Rappelling));
-1 && objects.push( //* Enemy
+    
+testObjArray[1] && objects.push( //* Enemy
     new LiveUnit(
-        { x: 40, y: 390 }, 
-        { width: 30, height: 30 }, 
-        0X000000, 
-        UnitDirection.Left, 
-        20, 
+        { x: 40, y: 390 },
+        { width: 30, height: 30 },
+        0X000000,
+        UnitDirection.Left,
+        20,
         UnitMode.Walking,
         UnitType.Enemy
-        ));
+    ));
 
-0 && objects.push( //* Gold
+testObjArray[2] && objects.push( //* Gold
     new StaticUnit(
-        { x: 140, y: 390 }, 
-        { width: 30, height: 30 }, 
-        0X000000, 
+        { x: 140, y: 390 },
+        { width: 30, height: 30 },
+        0X000000,
         StaticObjectType.Gold
-        )
+    )
 );
 
-1 && objects.push( //* Dirt
+testObjArray[3] && objects.push( //* Dirt
     new StaticUnit(
-        { x: 140, y: 390 }, 
-        { width: 30, height: 30 }, 
-        0X000000, 
+        { x: 140, y: 390 },
+        { width: 30, height: 30 },
+        0X000000,
         StaticObjectType.Dirt
-        )
+    )
 );
 
-0 && objects.push( //* Concrete
+testObjArray[4] && objects.push( //* Concrete
     new StaticUnit(
-        { x: 140, y: 40 }, 
-        { width: 30, height: 30 }, 
-        0X000000, 
+        { x: 140, y: 40 },
+        { width: 30, height: 30 },
+        0X000000,
         StaticObjectType.Concrete
-        )
+    )
 );
 
-0 && objects.push( //* Ladder
+testObjArray[5] && objects.push( //* Ladder
     new StaticUnit(
-        { x: 140, y: 40 }, 
-        { width: 30, height: 30 }, 
-        0X000000, 
+        { x: 140, y: 40 },
+        { width: 30, height: 30 },
+        0X000000,
         StaticObjectType.Ladder
-        )
+    )
 );
 
-1 && objects.push( //* Rod
+testObjArray[6] && objects.push( //* Rod
     new StaticUnit(
-        { x: 140, y: 40 }, 
-        { width: 30, height: 30 }, 
-        0X000000, 
+        { x: 140, y: 40 },
+        { width: 30, height: 30 },
+        0X000000,
         StaticObjectType.Rod
-        )
+    )
 );
 
+// const levProc: LevelProcessor = new LevelProcessor();
+
+// const test = levProc.processLevel(1);
+// console.log(test);
+
+const lev1 = testLevelFactory.getLevel(1);
+console.log(lev1);
+
+lev1.world.forEach((levelRow) => {
+    levelRow.forEach((rowSymbol) => {
+       const newObject = testUnitFactory.createUnit(rowSymbol);
+        
+    });
+});
 
 
-
-// for (let i = 0; i < 800; i += 23) {
-//     for(let j = 0; j < 600; j += 23) {
-//         objects.push(new BasicUnit({x: 0 + i, y: 0 + j}, {width: 30, height: 30}, 0XFAAFFF))
-//     };
-// };
-
-// app.stage.addChild(graphic.view)
 
 const app = new App(game_config.appConfig);
 document.body.appendChild(app.view);

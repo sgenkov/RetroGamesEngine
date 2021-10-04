@@ -11,17 +11,6 @@ export default class VisualObjectsProcessor {
         const { unitType, unitMode, scaling, direction, fullWidth, position, objectType } = unit;
         const tempRandColor: number = getRandomColor();
         const unitAnimationFrames = [];
-        // console.log('object type : ', objectType);
-
-        // if (objectType === ObjectType.LiveUnit) {
-            // console.log('graphic 1 :',
-            // // frame.id,
-            // // frame.elements,
-            // scaling,
-            // direction,
-            // fullWidth,
-            // position,
-            // tempRandColor);
             UNIT_MODEL.animationFrames[unitType].modes[unitMode].frames.forEach(frame => {
                 
                 unitAnimationFrames.push(this.createFrame(
@@ -34,14 +23,10 @@ export default class VisualObjectsProcessor {
                     tempRandColor
                 ));
             });
-        // } else {
-
-        // };
 
         return unitAnimationFrames;
     };
     createFrame = (id, elements, scaling, direction, fullWidth, position, color?) => {
-        // console.log('graphic :', id, elements, scaling, direction, fullWidth, position, color);
         let graphic = new Graphics();
         graphic["id"] = id;
         elements.forEach(element => {

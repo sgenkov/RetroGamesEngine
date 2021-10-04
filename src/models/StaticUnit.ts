@@ -9,7 +9,7 @@ export default class StaticUnit extends BasicSlicedObject {
         position = { x: 0, y: 0 },
         size = { width: 0, height: 0 },
         color = 0xFFFFFF,
-        unitType,
+        unitType?,
         unitMode = UnitMode.Default,
 
     ) {

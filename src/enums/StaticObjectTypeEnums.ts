@@ -5,5 +5,6 @@ export enum StaticObjectType {
     "Rod" = "rod",
     "Gold" = "gold",
     "Hole" = "hole",
-    "Air" = "air"
+    "Air" = "air",
+    "HiddenLadder" = "hiddenLadder"
 }
