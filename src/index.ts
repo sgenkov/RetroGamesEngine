@@ -1,6 +1,5 @@
 import * as PIXI from "pixi.js";
 import App from "./app";
-import * as game_config from '../configs/game-config.json'
 import BasicSlicedObject from "./models/BasicSlicedObject";
 import { UnitDirection } from "./enums/UnitDirectionsEnums";
 import { UnitMode } from "./enums/UnitModesEnums";
@@ -14,6 +13,8 @@ import levels from "../resources/levels.json";
 import LevelFactory from "./factories/LevelFactory";
 import LevelProcessor from "./processors/LevelProcessor";
 import UnitFactory from "./factories/UnitFactory";
+import LevelGraph from "../resources/LevelGraph";
+import GameModel from "./models/GameModel";
 
 
 window.PIXI = PIXI; //* lemmy try without this row
@@ -24,7 +25,7 @@ const testUnitFactory = new UnitFactory();
 
 export const objects: any = [];
 
-const testObjArray = [ 1, 0, 0, 0, 0, 0, 0, ];
+const testObjArray = [ 0, 0, 0, 0, 0, 0, 0, ];
 
 testObjArray[0] && objects.push( //* Player
     new LiveUnit(
@@ -87,29 +88,31 @@ testObjArray[5] && objects.push( //* Ladder
 testObjArray[6] && objects.push( //* Rod
     new StaticUnit(
         { x: 140, y: 40 },
-        { width: 30, height: 30 },
+        { width: 3, height: 30 },
         0X000000,
         StaticObjectType.Rod
     )
 );
 
-// const levProc: LevelProcessor = new LevelProcessor();
-
-// const test = levProc.processLevel(1);
-// console.log(test);
 
 const lev1 = testLevelFactory.getLevel(1);
-console.log(lev1);
 
-lev1.world.forEach((levelRow) => {
-    levelRow.forEach((rowSymbol) => {
+const testLevelGraph = new LevelGraph(lev1);
+lev1.world.forEach((levelRow, rowIndex) => {
+    levelRow.forEach((rowSymbol, symbolIndex) => {
        const newObject = testUnitFactory.createUnit(rowSymbol);
+    //    newObject.position.y =2001
+     newObject &&  objects.push(newObject)
+    
         
     });
 });
 
+window.addEventListener("resize", () => { //todo take care of this later at all cost!!!
+    console.log('RESIZE');
+    
+});
 
-
-const app = new App(game_config.appConfig);
+const app = new App(GameModel.configs.appConfig);
 document.body.appendChild(app.view);
 objects.forEach((object) => app.stage.addChild(object.view));

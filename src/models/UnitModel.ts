@@ -12,12 +12,10 @@ export default class UnitModel {
         // this.animationFrames = unit_config;
         // this.matrix = matrix;
         this.createFrames();
-        // console.log('lemmy objecttype : ', objectType);
         
     };
 
     private createFrames() {
-        // console.log(this.matrix);
         
         if (this.objectType === ObjectType.LiveUnit) {
             this.matrix = unitMatrix;
@@ -27,11 +25,6 @@ export default class UnitModel {
             this.animationFrames = staticUnit_config;
         };
             for (let unit of Object.keys(this.matrix)) {
-                // console.log('lemmy unit : ', unit);
-                // console.log('lemmy animFr : ', this.animationFrames[unit]);
-                
-                
-    
                 for (let unitMode of Object.keys(this.matrix[unit].modes)) {
                     this.matrix[unit].modes[unitMode].frames.forEach((frame, index) => {
                         this.animationFrames[unit].modes[unitMode].frames.push(this.createFrame(index, unitMode, unit))

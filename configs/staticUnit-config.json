@@ -54,6 +54,14 @@
                 ]
             }
         }
+    },
+    "hiddenLadder": {
+        "modes": {
+            "default": {
+                "frames": [                   
+                ]
+            }
+        }
     }
     
 }

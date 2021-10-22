@@ -1,6 +1,6 @@
 import * as PIXI from "pixi.js";
 import { objects } from './index';
-import game_config from '../configs/game-config.json';
+import GameModel from "./models/GameModel";
 
 export default class App extends PIXI.Application {
     static instance: App;
@@ -25,7 +25,7 @@ export default class App extends PIXI.Application {
 
     private static gameLoopFunction(time: number) {
         ++App.timeTt;
-        if (App.timeTt % game_config.globalUpdateInterval === 0) {
+        if (App.timeTt % GameModel.configs.globalUpdateInterval === 0) {
             App.stageUpdate();
         };
     };

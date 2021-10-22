@@ -2,9 +2,9 @@ import { UnitDirection } from "../enums/UnitDirectionsEnums";
 import { UnitMode } from "../enums/UnitModesEnums";
 import { UnitType } from "../enums/UnitTypeEnums";
 import BasicSlicedObject from "./BasicSlicedObject";
-import game_config from '../../configs/game-config.json';
 import { visualObjectsProcessor } from "..";
 import { ObjectType } from "../enums/ObjectTypeEnums";
+import GameModel from "./GameModel";
 
 export default class LiveUnit extends BasicSlicedObject {
     private direction: string;
@@ -35,12 +35,11 @@ export default class LiveUnit extends BasicSlicedObject {
         // this.unitType = unitType;
         this.frames = visualObjectsProcessor.framesInit(this);
         this.view = this.frames[0];
-        // console.log('frames live : ', this.frames);
         
     };
     
     public update(app: any) {
-        this.updateInterval -= game_config.globalUpdateInterval;
+        this.updateInterval -= GameModel.configs.globalUpdateInterval;
 
         if (this.updateInterval <= 0) { //Todo Този метод на ъпдейт ми се струва крайно неоптимален
             this.updateInterval += this.baseUpdateInterval;

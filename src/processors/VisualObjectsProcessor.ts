@@ -1,6 +1,6 @@
 import { Graphics } from "pixi.js";
-import { ObjectType } from "../enums/ObjectTypeEnums";
 import { UnitDirection } from "../enums/UnitDirectionsEnums";
+import GameModel from "../models/GameModel";
 import UnitModel from "../models/UnitModel";
 import { getRandomColor } from "../utils/utils";
 
@@ -9,7 +9,12 @@ export default class VisualObjectsProcessor {
         const UNIT_MODEL = new UnitModel(unit.objectType);
         
         const { unitType, unitMode, scaling, direction, fullWidth, position, objectType } = unit;
-        const tempRandColor: number = getRandomColor();
+        let tempRandColor = 23;
+        if (GameModel.configs.randomElementColors) {
+            tempRandColor = getRandomColor();
+        } else {
+            tempRandColor = 0x60EF35;
+        };
         const unitAnimationFrames = [];
             UNIT_MODEL.animationFrames[unitType].modes[unitMode].frames.forEach(frame => {
                 
@@ -47,8 +52,6 @@ export default class VisualObjectsProcessor {
             graphic.scale.x = direction === UnitDirection.Left ? -1 : 1;
         })
         // graphic.tint = 0xFF2700
-        // console.log("element created");
-        
         return graphic;
     };
 };

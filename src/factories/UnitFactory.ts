@@ -1,23 +1,63 @@
 import { ILevelObject } from "../contracts/ILevelObject";
+import { StaticObjectType } from "../enums/StaticObjectTypeEnums";
+import { UnitType } from "../enums/UnitTypeEnums";
 import BasicSlicedObject from "../models/BasicSlicedObject";
 import LiveUnit from "../models/LiveUnit";
 import StaticUnit from "../models/StaticUnit";
+import GameModel from "../models/GameModel";
 
 export default class UnitFactory {
     private staticUnitSymbols = "#CH-*_ X";
     private liveUnitSymbols = "PE";
-    private symMap: Map<string, number> = new Map ([
-        ["", 1]
-    ])
-    public createUnit(unitSymbol: string): BasicSlicedObject {
-        // console.log(unitSymbol);
-        // console.log(this.staticUnitSymbols.includes('C') );
-        if (this.staticUnitSymbols.includes(unitSymbol)) {
-            return new StaticUnit({x: 3, y:4 }, { width: 1, height: 1 }, null, );
-        } else if (this.liveUnitSymbols.includes(unitSymbol)) {
-            return new LiveUnit();
+    private testConstantX = window.innerWidth / 318;
+    private testConstanty = window.innerHeight/ 170;
+
+    private levelObjectMap: Map<string, string> = new Map(
+        [
+            ["#", StaticObjectType.Dirt],
+            ["C", StaticObjectType.Concrete],
+            ["H", StaticObjectType.Ladder],
+            ["-", StaticObjectType.Rod],
+            ["*", StaticObjectType.Gold],
+            ["_", StaticObjectType.Hole],
+            [" ", StaticObjectType.Air],
+            ["X", "hiddenLadder"],
+            ["P", "player"],
+            ["E", "enemy"]
+        ]
+    );
+    public createUnit(unitSymbol): BasicSlicedObject {
+        if (this.staticUnitSymbols.includes(unitSymbol.type)) {
+
+            return new StaticUnit(
+                {
+                    x: unitSymbol.position.x * GameModel.configs.elementsScaling * this.testConstantX - GameModel.configs.elementsScaling * this.testConstantX,
+                    y: unitSymbol.position.y * GameModel.configs.elementsScaling * this.testConstanty
+                },
+                {
+                    width: 1,
+                    height: 1
+                },
+                null,
+                this.levelObjectMap.get(unitSymbol.type))
+        } else if (this.liveUnitSymbols.includes(unitSymbol.type)) {
+            
+            return new LiveUnit(
+                {
+                    x: unitSymbol.position.x * GameModel.configs.elementsScaling * this.testConstantX - GameModel.configs.elementsScaling * this.testConstantX,
+                    y: unitSymbol.position.y * GameModel.configs.elementsScaling * this.testConstanty
+                },
+                undefined,
+                undefined,
+                undefined,
+                5,
+                undefined,
+                unitSymbol.type === "E" 
+                    ? UnitType.Enemy
+                    : UnitType.Player
+
+            );
         }
-        
-        // return new LiveUnit();
+
     };
 };
