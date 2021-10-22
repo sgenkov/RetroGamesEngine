@@ -1,9 +1,10 @@
 {
     "appConfig": {
-        "width": 800,
-        "height": 936,
+        "width": 3000,
+        "height": 3080,
         "color" :  "0x000000"
     },
     "elementsScaling": 10,
-    "globalUpdateInterval": 1
+    "globalUpdateInterval": 1,
+    "randomElementColors": false
 }
