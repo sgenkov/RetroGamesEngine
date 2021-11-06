@@ -4,7 +4,9 @@
         "height": 3080,
         "color" :  "0x000000"
     },
-    "elementsScaling": 10,
+    "elementsScaling": 3,
     "globalUpdateInterval": 1,
-    "randomElementColors": false
+    "randomElementColors": false,
+    "objectsWidthBlocks": 9,
+    "objectsHeightBlocks": 10
 }

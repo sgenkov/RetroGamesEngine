@@ -43,9 +43,14 @@ export default class VisualObjectsProcessor {
                 element.height * scaling
             );
             graphic.endFill();
-            graphic.x = direction === UnitDirection.Right
+            if (direction) {
+                graphic.x = direction === UnitDirection.Right
                 ? 0
-                : fullWidth * scaling;
+                : fullWidth * scaling; // lemmy this causes the elements right-shifting
+            } else {
+                graphic.x = 0;
+            };
+           
             graphic.x += position.x;
 
             graphic.y = position.y;

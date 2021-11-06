@@ -102,7 +102,14 @@ lev1.world.forEach((levelRow, rowIndex) => {
     levelRow.forEach((rowSymbol, symbolIndex) => {
        const newObject = testUnitFactory.createUnit(rowSymbol);
     //    newObject.position.y =2001
-     newObject &&  objects.push(newObject)
+    //  newObject &&  objects.push(newObject)
+     if (newObject && rowIndex === 0 && symbolIndex === 0) {
+         if (rowIndex === 0 && symbolIndex === 0) {
+             console.log(newObject);
+         };
+         
+        }
+        objects.push(newObject)
     
         
     });

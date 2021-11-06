@@ -28,11 +28,10 @@ export default class UnitFactory {
     );
     public createUnit(unitSymbol): BasicSlicedObject {
         if (this.staticUnitSymbols.includes(unitSymbol.type)) {
-
             return new StaticUnit(
                 {
-                    x: unitSymbol.position.x * GameModel.configs.elementsScaling * this.testConstantX - GameModel.configs.elementsScaling * this.testConstantX,
-                    y: unitSymbol.position.y * GameModel.configs.elementsScaling * this.testConstanty
+                    x: unitSymbol.position.x * (GameModel.configs.elementsScaling * 10),
+                    y: unitSymbol.position.y * (GameModel.configs.elementsScaling * 11)//window.innerHeight / 15
                 },
                 {
                     width: 1,
@@ -44,8 +43,8 @@ export default class UnitFactory {
             
             return new LiveUnit(
                 {
-                    x: unitSymbol.position.x * GameModel.configs.elementsScaling * this.testConstantX - GameModel.configs.elementsScaling * this.testConstantX,
-                    y: unitSymbol.position.y * GameModel.configs.elementsScaling * this.testConstanty
+                    x: unitSymbol.position.x * (GameModel.configs.elementsScaling * 10),
+                    y: unitSymbol.position.y * (GameModel.configs.elementsScaling * 11)
                 },
                 undefined,
                 undefined,
