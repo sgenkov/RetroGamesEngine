@@ -15,12 +15,13 @@ import LevelProcessor from "./processors/LevelProcessor";
 import UnitFactory from "./factories/UnitFactory";
 import LevelGraph from "../resources/LevelGraph";
 import GameModel from "./models/GameModel";
+import GraphProcessor from "./processors/GraphProcessor";
 
 
 window.PIXI = PIXI; //* lemmy try without this row
 
 export const visualObjectsProcessor = new VisualObjectsProcessor();
-const testLevelFactory = new LevelFactory();
+export const testLevelFactory = new LevelFactory();
 const testUnitFactory = new UnitFactory();
 
 export const objects: any = [];
@@ -95,9 +96,11 @@ testObjArray[6] && objects.push( //* Rod
 );
 
 
-const lev1 = testLevelFactory.getLevel(1);
+const lev1 = testLevelFactory.getLevel(1); // TODO unify this factory
 
-const testLevelGraph = new LevelGraph(lev1);
+const testLevelGraph: any[] = new LevelGraph(lev1).levelGraph;
+// console.log(testLevelGraph);
+
 lev1.world.forEach((levelRow, rowIndex) => {
     levelRow.forEach((rowSymbol, symbolIndex) => {
        const newObject = testUnitFactory.createUnit(rowSymbol);
@@ -105,13 +108,11 @@ lev1.world.forEach((levelRow, rowIndex) => {
     //  newObject &&  objects.push(newObject)
      if (newObject && rowIndex === 0 && symbolIndex === 0) {
          if (rowIndex === 0 && symbolIndex === 0) {
-             console.log(newObject);
+            //  console.log(newObject);
          };
          
         }
-        objects.push(newObject)
-    
-        
+        objects.push(newObject);
     });
 });
 

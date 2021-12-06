@@ -1,6 +1,77 @@
+import { ILevelObject } from "../contracts/ILevelObject";
+import { testLevelFactory } from "../index";
+import GameModel from "../models/GameModel";
+import Level from "../models/Level";
 export default class GraphProcessor {
-    
-    public static calculateGraph(level) {
+    private readonly passableSymbols = ["H", "-", "*", "_", " ", "P", "E", "X"];
+    public levelGraph = null;
+    public lev1: Level;
+    constructor(level) {
+        this.lev1 = level;//testLevelFactory.getLevel(1); // TODO unify this factory
+        // console.log(this.lev1);
+    };
+
+    public calculateGraph(level) {
+        const vertices = [];
+        this.lev1.world.forEach((levelRow, rowIndex, level) => {
+            levelRow.forEach((rowSymbol, symbolIndex, row) => {
+                const vertex = {
+                    id: {
+                        x: rowSymbol.position.x,
+                        y: rowSymbol.position.y
+                    },
+                    isPassable: this.passableSymbols.some((checkSymbol) => {
+                        return checkSymbol === rowSymbol.type;
+                    }),
+                    passableDirections:
+                    {
+                        left: this.isLeftBoundPassable(rowSymbol, row[symbolIndex - 1]),
+                        up: this.isUpBoundPassable(rowSymbol, level[rowIndex - 1]),
+                        right: this.isRightBoundPassable(rowSymbol, row[symbolIndex + 1]),
+                        down: this.isDownBoundPassable(rowSymbol, level[rowIndex + 1])
+                    }
+                };
+                vertices.push(vertex);
+            });
+        });
+        console.log(vertices);
+
+        return vertices;
+    };
+    private isBlockerUnit() {
 
     };
+
+    private isLeftBoundPassable(currentSymbol: ILevelObject, leftSymbol: ILevelObject): boolean {
+
+        return (currentSymbol.position.x > 0)
+            && leftSymbol
+            && (this.passableSymbols.some((checkSymbol) => {
+                return checkSymbol === leftSymbol.type;
+            }));
+    };
+    private isUpBoundPassable(currentSymbol: ILevelObject, upperRow: ILevelObject[]): boolean {
+
+        return (currentSymbol.position.y > 0)
+            && upperRow
+            && (this.passableSymbols.some((checkSymbol) => {
+                return checkSymbol === upperRow[currentSymbol.position.x].type;
+            }));
+    };
+    private isRightBoundPassable(currentSymbol: ILevelObject, rightSymbol: ILevelObject): boolean {
+        
+        return (currentSymbol.position.x < GameModel.configs.levelColumns - 1)
+            && rightSymbol
+            && (this.passableSymbols.some((checkSymbol) => {
+                return checkSymbol === rightSymbol.type;
+            }));
+    };
+    private isDownBoundPassable(currentSymbol: ILevelObject, downRow: ILevelObject[]): boolean {
+        return (currentSymbol.position.y < GameModel.configs.levelRows - 1)
+            && downRow
+            && (this.passableSymbols.some((checkSymbol) => {
+                return checkSymbol === downRow[currentSymbol.position.x].type;
+            }));
+    };
+
 };
