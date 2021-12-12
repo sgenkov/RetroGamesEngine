@@ -13,6 +13,8 @@ export default class LiveUnit extends BasicSlicedObject {
     // private unitMode: UnitMode;
     private _currentFrameIndex: number = 0;
     private objectType: ObjectType = ObjectType.LiveUnit;
+
+    public speed: { x: number, y: number} = { x:0, y:0 };
     constructor(
         position = { x: 0, y: 0 },
         size = { width: 0, height: 0 },

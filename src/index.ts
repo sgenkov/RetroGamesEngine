@@ -13,10 +13,10 @@ import levels from "../resources/levels.json";
 import LevelFactory from "./factories/LevelFactory";
 import LevelProcessor from "./processors/LevelProcessor";
 import UnitFactory from "./factories/UnitFactory";
-import LevelGraph from "../resources/LevelGraph";
+import LevelGraphFactory from "./processors/LevelGraphFactory";
 import GameModel from "./models/GameModel";
 import GraphProcessor from "./processors/GraphProcessor";
-
+import { iterateOverLevel } from "../src/utils/utils";
 
 window.PIXI = PIXI; //* lemmy try without this row
 
@@ -26,91 +26,21 @@ const testUnitFactory = new UnitFactory();
 
 export const objects: any = [];
 
-const testObjArray = [ 0, 0, 0, 0, 0, 0, 0, ];
-
-testObjArray[0] && objects.push( //* Player
-    new LiveUnit(
-        { x: 40, y: 40 },
-        { width: 130, height: 130 },
-        0X000000,
-        UnitDirection.Right,
-        26,
-        UnitMode.Walking,
-        UnitType.Player
-    ));
-    
-testObjArray[1] && objects.push( //* Enemy
-    new LiveUnit(
-        { x: 40, y: 390 },
-        { width: 30, height: 30 },
-        0X000000,
-        UnitDirection.Left,
-        20,
-        UnitMode.Walking,
-        UnitType.Enemy
-    ));
-
-testObjArray[2] && objects.push( //* Gold
-    new StaticUnit(
-        { x: 140, y: 390 },
-        { width: 30, height: 30 },
-        0X000000,
-        StaticObjectType.Gold
-    )
-);
-
-testObjArray[3] && objects.push( //* Dirt
-    new StaticUnit(
-        { x: 140, y: 390 },
-        { width: 30, height: 30 },
-        0X000000,
-        StaticObjectType.Dirt
-    )
-);
-
-testObjArray[4] && objects.push( //* Concrete
-    new StaticUnit(
-        { x: 140, y: 40 },
-        { width: 30, height: 30 },
-        0X000000,
-        StaticObjectType.Concrete
-    )
-);
-
-testObjArray[5] && objects.push( //* Ladder
-    new StaticUnit(
-        { x: 140, y: 40 },
-        { width: 30, height: 30 },
-        0X000000,
-        StaticObjectType.Ladder
-    )
-);
-
-testObjArray[6] && objects.push( //* Rod
-    new StaticUnit(
-        { x: 140, y: 40 },
-        { width: 3, height: 30 },
-        0X000000,
-        StaticObjectType.Rod
-    )
-);
-
-
 const lev1 = testLevelFactory.getLevel(1); // TODO unify this factory
 
-const testLevelGraph: any[] = new LevelGraph(lev1).levelGraph;
+const testLevelGraph: any[] = new LevelGraphFactory(lev1).levelGraph;
 // console.log(testLevelGraph);
 
 lev1.world.forEach((levelRow, rowIndex) => {
     levelRow.forEach((rowSymbol, symbolIndex) => {
-       const newObject = testUnitFactory.createUnit(rowSymbol);
-    //    newObject.position.y =2001
-    //  newObject &&  objects.push(newObject)
-     if (newObject && rowIndex === 0 && symbolIndex === 0) {
-         if (rowIndex === 0 && symbolIndex === 0) {
-            //  console.log(newObject);
-         };
-         
+        const newObject = testUnitFactory.createUnit(rowSymbol);
+        //    newObject.position.y =2001
+        //  newObject &&  objects.push(newObject)
+        if (newObject && rowIndex === 0 && symbolIndex === 0) {
+            if (rowIndex === 0 && symbolIndex === 0) {
+                //  console.log(newObject);
+            };
+
         }
         objects.push(newObject);
     });
@@ -118,9 +48,35 @@ lev1.world.forEach((levelRow, rowIndex) => {
 
 window.addEventListener("resize", () => { //todo take care of this later at all cost!!!
     console.log('RESIZE');
-    
+
 });
 
 const app = new App(GameModel.configs.appConfig);
 document.body.appendChild(app.view);
 objects.forEach((object) => app.stage.addChild(object.view));
+
+// const d = []
+// const  res = iterateOverLevel([["a", "b", "c"], ["d", "e", "f"]],
+//     ({element}) => {
+//         console.log(element);
+//         if (element === "f") {
+//             d.push(element)
+//         }
+//     },
+//     d
+// )
+// console.log(res);
+
+const d = []
+const  res = iterateOverLevel(lev1.world,
+    ({element}) => {
+        console.log(element);
+        if (element.type === "P") {
+            d.push(element)
+        }
+    },
+    d
+)
+console.log(res)
+
+

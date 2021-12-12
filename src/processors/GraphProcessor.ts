@@ -34,7 +34,6 @@ export default class GraphProcessor {
                 vertices.push(vertex);
             });
         });
-        console.log(vertices);
 
         return vertices;
     };

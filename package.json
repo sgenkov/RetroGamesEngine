@@ -8,6 +8,7 @@
   "private": true,
   "scripts": {
     "start": "webpack-dev-server --config webpack/webpack.dev",
+    "dev": "webpack-dev-server --config webpack/webpack.dev",
     "build": "webpack -p --progress --config webpack/webpack.prod",
     "release": "webpack --progress ",
     "transform": "node transformScript.js",
