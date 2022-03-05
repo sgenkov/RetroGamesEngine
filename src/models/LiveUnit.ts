@@ -1,10 +1,11 @@
-import { UnitDirection } from "../enums/UnitDirectionsEnums";
-import { UnitMode } from "../enums/UnitModesEnums";
-import { UnitType } from "../enums/UnitTypeEnums";
+import { UnitDirection } from "../data_types/enums/UnitDirectionsEnums";
+import { UnitMode } from "../data_types/enums/UnitModesEnums";
+import { UnitType } from "../data_types/enums/UnitTypeEnums";
 import BasicSlicedObject from "./BasicSlicedObject";
-import { ObjectType } from "../enums/ObjectTypeEnums";
+import { ObjectType } from "../data_types/enums/ObjectTypeEnums";
 import GameModel from "./GameModel";
 import App from "../app";
+import DebugConfig from "../DebugConfig";
 
 export default class LiveUnit extends BasicSlicedObject {
     private direction: string;
@@ -30,7 +31,8 @@ export default class LiveUnit extends BasicSlicedObject {
             size,
             color = 0xFFFFFF,
             unitType,
-        );
+            );
+            DebugConfig.constructors_log && console.log(`${this.constructor.name} constructed`);
         
         this.baseUpdateInterval = baseUpdateInterval;
         this.updateInterval = this.baseUpdateInterval;
@@ -40,7 +42,6 @@ export default class LiveUnit extends BasicSlicedObject {
         this.frames = this.visualObjectsProcessor.framesInit(this);
         this.view = this.frames[0];
         
-        console.log('LIVE UNIT CONSTRUCTED : ', this);
     };
     
     public update() {

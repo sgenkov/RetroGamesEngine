@@ -1,10 +1,11 @@
-import { ILevelObject } from "../contracts/ILevelObject";
-import { StaticObjectType } from "../enums/StaticObjectTypeEnums";
-import { UnitType } from "../enums/UnitTypeEnums";
+import { ILevelObject } from "../data_types/contracts/ILevelObject";
+import { StaticObjectType } from "../data_types/enums/StaticObjectTypeEnums";
+import { UnitType } from "../data_types/enums/UnitTypeEnums";
 import BasicSlicedObject from "../models/BasicSlicedObject";
 import LiveUnit from "../models/LiveUnit";
 import StaticUnit from "../models/StaticUnit";
 import GameModel from "../models/GameModel";
+import DebugConfig from "../DebugConfig";
 
 export default class UnitFactory {
     private staticUnitSymbols = "#CH-*_ X";
@@ -26,6 +27,10 @@ export default class UnitFactory {
             ["E", "enemy"]
         ]
     );
+
+    constructor() {
+        DebugConfig.constructors_log && console.log(`${this.constructor.name} constructed`);
+    }
     private createStaticUnit(unitSymbol): StaticUnit {
         return new StaticUnit(
             {

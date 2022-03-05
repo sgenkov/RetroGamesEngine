@@ -1,8 +1,9 @@
-import { UnitMode } from '../enums/UnitModesEnums';
-import { UnitType } from "../enums/UnitTypeEnums";
-import { StaticObjectType } from "../enums/StaticObjectTypeEnums";
+import { UnitMode } from '../data_types/enums/UnitModesEnums';
+import { UnitType } from "../data_types/enums/UnitTypeEnums";
+import { StaticObjectType } from "../data_types/enums/StaticObjectTypeEnums";
 import GameModel from "./GameModel";
 import VisualObjectsProcessor from '../processors/VisualObjectsProcessor';
+import DebugConfig from '../DebugConfig';
 
 export default class BasicSlicedObject {
     
@@ -28,6 +29,8 @@ export default class BasicSlicedObject {
         unitType
         
     ) {
+        DebugConfig.constructors_log && console.log(`${this.constructor.name} constructed`);
+        
         this.position = position;
         this.size = size;
         this.color = color;

@@ -7,6 +7,7 @@ import Level from '../models/Level';
 import State from './State';
 // import { app } from '..';
 import App from '../app';
+import DebugConfig from '../DebugConfig';
 export default class Game extends State {
     
     public currentLevel: Level;
@@ -16,6 +17,8 @@ export default class Game extends State {
 
     constructor() {
         super();
+        DebugConfig.constructors_log && console.log(`${this.constructor.name} constructed`);
+        
         this.currentLevel = this.levelFactory.getLevel(this.currentLevelIndex)
     };
     public enter() {
@@ -23,15 +26,15 @@ export default class Game extends State {
         super.enter();
         //TODO Move the listeners somewhere
         document.addEventListener("keydown", (e) => {//TODO next handle events for the controls
-            console.log(e.key);
+            DebugConfig.keyboard_listeners && console.log(e.key);
         });
         document.addEventListener("keyup", (e) => {
             // this.keysUp(e)
-            console.log(e.key);
+            DebugConfig.keyboard_listeners && console.log(e.key);
         });
         document.body.addEventListener("pointerdown", (e) => {
             // this.PLAYER.fire()
-            console.log(e.x, e.y);
+            DebugConfig.mouse_listeners && console.log(e.x, e.y);
             
         });
 

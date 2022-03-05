@@ -1,14 +1,14 @@
 import * as PIXI from "pixi.js";
 import App from "./app";
 import BasicSlicedObject from "./models/BasicSlicedObject";
-import { UnitDirection } from "./enums/UnitDirectionsEnums";
-import { UnitMode } from "./enums/UnitModesEnums";
+import { UnitDirection } from "./data_types/enums/UnitDirectionsEnums";
+import { UnitMode } from "./data_types/enums/UnitModesEnums";
 import UnitModel from "./models/UnitModel";
-import { UnitType } from "./enums/UnitTypeEnums";
+import { UnitType } from "./data_types/enums/UnitTypeEnums";
 import VisualObjectsProcessor from "./processors/VisualObjectsProcessor";
 import LiveUnit from "./models/LiveUnit";
 import StaticUnit from "./models/StaticUnit";
-import { StaticObjectType } from "./enums/StaticObjectTypeEnums";
+import { StaticObjectType } from "./data_types/enums/StaticObjectTypeEnums";
 import levels from "../resources/levels.json";
 import LevelFactory from "./factories/LevelFactory";
 import LevelProcessor from "./processors/LevelProcessor";
@@ -20,6 +20,7 @@ import Utils from "../src/utils/utils";
 import Menu from "./states/Menu";
 import Game from "./states/Game";
 import * as Tone from 'tone'
+import DebugConfig from "./DebugConfig";
 
 window.PIXI = PIXI; //* lemmy try without this row
 

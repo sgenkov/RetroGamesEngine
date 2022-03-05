@@ -1,11 +1,13 @@
 import { app } from "../index";
 import { Text } from 'pixi.js';
+import DebugConfig from "../DebugConfig";
 
 export default class Menu {
     private readonly name: string;
     private header: Text;
     
     constructor() {
+        DebugConfig.constructors_log && console.log(`${this.constructor.name} constructed`);
         this.name = "menu";
         this.header = new Text("New Game", {
             fontSize: 35,
@@ -15,7 +17,7 @@ export default class Menu {
             strokeThickness: 2,
         });
         this.header.anchor.set(0.5);
-        console.log(app.view.width);
+        // console.log(app.view.width);
         
         this.header.position.x = 200//app.view.width / 2;
         this.header.position.y = 200//app.view.height / 2;

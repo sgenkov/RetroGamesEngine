@@ -1,13 +1,15 @@
 import unit_config from '../../configs/unit-config-new.json';
 import staticUnit_config from '../../configs/staticUnit-config.json';
-import { ObjectType } from '../enums/ObjectTypeEnums';
+import { ObjectType } from '../data_types/enums/ObjectTypeEnums';
 import unitMatrix from '../rasterworks/unit-matrix.json';
 import objectMatrix from '../rasterworks/object-matrix.json';
+import DebugConfig from '../DebugConfig';
 export default class UnitModel {
     private matrix: any;
     public animationFrames: any;
     public objectType: ObjectType;
     constructor(objectType) {
+        DebugConfig.constructors_log && console.log(`${this.constructor.name} constructed`);
         this.objectType = objectType;
         // this.animationFrames = unit_config;
         // this.matrix = matrix;

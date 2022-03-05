@@ -1,4 +1,9 @@
+import DebugConfig from "../DebugConfig";
+
 class Utils {
+    constructor() {
+        DebugConfig.constructors_log && console.log(`${this.constructor.name} constructed`);
+    }
     public getRandomColor(): number {
         return Math.floor(Math.random() * 16777215);
     };

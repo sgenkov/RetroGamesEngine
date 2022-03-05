@@ -1,5 +1,6 @@
-import { ILevelObject } from "../contracts/ILevelObject";
-import { testLevelFactory } from "../index";
+import { ILevelObject } from "../data_types/contracts/ILevelObject";
+import DebugConfig from "../DebugConfig";
+// import { testLevelFactory } from "../index";
 import GameModel from "../models/GameModel";
 import Level from "../models/Level";
 export default class GraphProcessor {
@@ -7,6 +8,7 @@ export default class GraphProcessor {
     public levelGraph = null;
     public lev1: Level;
     constructor(level) {
+        DebugConfig.constructors_log && console.log(`${this.constructor.name} constructed`);
         this.lev1 = level;//testLevelFactory.getLevel(1); // TODO unify this factory
         // console.log(this.lev1);
     };

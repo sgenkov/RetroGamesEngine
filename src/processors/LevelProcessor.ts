@@ -1,8 +1,9 @@
-import { ILevelObject } from "../contracts/ILevelObject";
-import { StaticObjectType } from "../enums/StaticObjectTypeEnums";
+import { ILevelObject } from "../data_types/contracts/ILevelObject";
+import { StaticObjectType } from "../data_types/enums/StaticObjectTypeEnums";
 import levels from "../../resources/levels.json";
 import GameModel from "../models/GameModel";
 import exp from "constants";
+import DebugConfig from "../DebugConfig";
 
 
 export default class LevelProcessor {
@@ -20,6 +21,10 @@ export default class LevelProcessor {
             ["E", "enemy"]
         ]
     );
+
+    constructor() {
+        DebugConfig.constructors_log && console.log(`${this.constructor.name} constructed`);
+    }
 
     /**
      * 

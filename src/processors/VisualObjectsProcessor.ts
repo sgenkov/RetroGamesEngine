@@ -1,10 +1,14 @@
 import { Graphics } from "pixi.js";
-import { UnitDirection } from "../enums/UnitDirectionsEnums";
+import { UnitDirection } from "../data_types/enums/UnitDirectionsEnums";
+import DebugConfig from "../DebugConfig";
 import GameModel from "../models/GameModel";
 import UnitModel from "../models/UnitModel";
 import Utils from "../utils/utils";
 
 export default class VisualObjectsProcessor {
+    constructor() {
+        DebugConfig.constructors_log && console.log(`${this.constructor.name} constructed`);
+    }
     framesInit(unit) {
         const UNIT_MODEL = new UnitModel(unit.objectType);
         

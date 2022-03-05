@@ -1,6 +1,7 @@
 // import { visualObjectsProcessor } from "..";
-import { ObjectType } from "../enums/ObjectTypeEnums";
-import { UnitMode } from "../enums/UnitModesEnums";
+import { ObjectType } from "../data_types/enums/ObjectTypeEnums";
+import { UnitMode } from "../data_types/enums/UnitModesEnums";
+import DebugConfig from "../DebugConfig";
 import BasicSlicedObject from "./BasicSlicedObject";
 
 export default class StaticUnit extends BasicSlicedObject {
@@ -13,6 +14,8 @@ export default class StaticUnit extends BasicSlicedObject {
 
     ) {
         super(position, size, color, unitType);
+        DebugConfig.constructors_log && console.log(`${this.constructor.name} constructed`);
+        
         this.unitMode = unitMode;
         this.frames = this.visualObjectsProcessor.framesInit(this);
         this.view = this.frames[0];
