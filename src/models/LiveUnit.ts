@@ -2,9 +2,9 @@ import { UnitDirection } from "../enums/UnitDirectionsEnums";
 import { UnitMode } from "../enums/UnitModesEnums";
 import { UnitType } from "../enums/UnitTypeEnums";
 import BasicSlicedObject from "./BasicSlicedObject";
-import { visualObjectsProcessor } from "..";
 import { ObjectType } from "../enums/ObjectTypeEnums";
 import GameModel from "./GameModel";
+import App from "../app";
 
 export default class LiveUnit extends BasicSlicedObject {
     private direction: string;
@@ -13,6 +13,7 @@ export default class LiveUnit extends BasicSlicedObject {
     // private unitMode: UnitMode;
     private _currentFrameIndex: number = 0;
     private objectType: ObjectType = ObjectType.LiveUnit;
+    public behaviors: any[] = [];
 
     public speed: { x: number, y: number} = { x:0, y:0 };
     constructor(
@@ -30,24 +31,26 @@ export default class LiveUnit extends BasicSlicedObject {
             color = 0xFFFFFF,
             unitType,
         );
+        
         this.baseUpdateInterval = baseUpdateInterval;
         this.updateInterval = this.baseUpdateInterval;
         this.direction = direction;
         this.unitMode = unitMode;
         // this.unitType = unitType;
-        this.frames = visualObjectsProcessor.framesInit(this);
+        this.frames = this.visualObjectsProcessor.framesInit(this);
         this.view = this.frames[0];
         
+        console.log('LIVE UNIT CONSTRUCTED : ', this);
     };
     
-    public update(app: any) {
+    public update() {
         this.updateInterval -= GameModel.configs.globalUpdateInterval;
 
         if (this.updateInterval <= 0) { //Todo Този метод на ъпдейт ми се струва крайно неоптимален
             this.updateInterval += this.baseUpdateInterval;
-            app.instance.stage.removeChild(this.view);
+            App.instance.stage.removeChild(this.view);
             this.view = this.frames[this.nextFrameIndex];
-            app.instance.stage.addChild(this.view);
+            App.instance.stage.addChild(this.view);
         };
     };
     protected get nextFrameIndex(): number {

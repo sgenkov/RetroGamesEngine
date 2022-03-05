@@ -1,5 +1,5 @@
 import * as PIXI from "pixi.js";
-import { objects } from './index';
+// import { objects } from './index';
 import GameModel from "./models/GameModel";
 
 export default class App extends PIXI.Application {
@@ -7,6 +7,7 @@ export default class App extends PIXI.Application {
     private width: number;
     private height: number;
     private static timeTt: number = 0;
+    // public dispatcher: PIXI.utils.EventEmitter;
 
     constructor(appConfig: any) {
         if (App.instance) {
@@ -16,8 +17,10 @@ export default class App extends PIXI.Application {
         super({ width: appConfig.width, height: appConfig.height, backgroundColor: appConfig.color });
 
         App.instance = this;
+        // this.dispatcher = new PIXI.utils.EventEmitter();
 
         App.instance.ticker.add((time) => {
+            
             App.gameLoopFunction(time);
         });
 
@@ -31,6 +34,7 @@ export default class App extends PIXI.Application {
     };
 
     static stageUpdate() {
+        
         // App.instance.stage.removeChildren();
         // objects.forEach(object => {
         //     object.update();
@@ -38,10 +42,10 @@ export default class App extends PIXI.Application {
         // }
         // );
 
-        objects.forEach(object => {
-            object.update(this);
-        }
-        );
+        // objects.forEach(object => {
+        //     object.update(this);
+        // }
+        // );
     };
 
 };

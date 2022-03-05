@@ -16,67 +16,66 @@ import UnitFactory from "./factories/UnitFactory";
 import LevelGraphFactory from "./processors/LevelGraphFactory";
 import GameModel from "./models/GameModel";
 import GraphProcessor from "./processors/GraphProcessor";
-import { iterateOverLevel } from "../src/utils/utils";
+import Utils from "../src/utils/utils";
+import Menu from "./states/Menu";
+import Game from "./states/Game";
+import * as Tone from 'tone'
 
 window.PIXI = PIXI; //* lemmy try without this row
 
-export const visualObjectsProcessor = new VisualObjectsProcessor();
-export const testLevelFactory = new LevelFactory();
-const testUnitFactory = new UnitFactory();
+// export const visualObjectsProcessor = new VisualObjectsProcessor();
+// export const testLevelFactory = new LevelFactory();
+// const testUnitFactory = new UnitFactory();
 
-export const objects: any = [];
 
-const lev1 = testLevelFactory.getLevel(1); // TODO unify this factory
+// const lev1 = testLevelFactory.getLevel(1); // TODO unify this factory
 
-const testLevelGraph: any[] = new LevelGraphFactory(lev1).levelGraph;
-// console.log(testLevelGraph);
+// const testLevelGraph: any[] = new LevelGraphFactory(lev1).levelGraph;
+export const app = new App(GameModel.configs.appConfig);
 
-lev1.world.forEach((levelRow, rowIndex) => {
-    levelRow.forEach((rowSymbol, symbolIndex) => {
-        const newObject = testUnitFactory.createUnit(rowSymbol);
-        //    newObject.position.y =2001
-        //  newObject &&  objects.push(newObject)
-        if (newObject && rowIndex === 0 && symbolIndex === 0) {
-            if (rowIndex === 0 && symbolIndex === 0) {
-                //  console.log(newObject);
-            };
-
-        }
-        objects.push(newObject);
-    });
-});
-
-window.addEventListener("resize", () => { //todo take care of this later at all cost!!!
+window.addEventListener("resize", () => { //todo take care of this later
     console.log('RESIZE');
-
+    
 });
 
-const app = new App(GameModel.configs.appConfig);
-document.body.appendChild(app.view);
-objects.forEach((object) => app.stage.addChild(object.view));
 
-// const d = []
-// const  res = iterateOverLevel([["a", "b", "c"], ["d", "e", "f"]],
-//     ({element}) => {
-//         console.log(element);
-//         if (element === "f") {
-//             d.push(element)
+
+
+// export const objects: any = [];
+// const res = Utils.iterateOverLevel(lev1.world,
+//     ({ rowSymbol }, acc) => {
+//         if (rowSymbol.type === "P") { //* test 1
+//             acc.push(rowSymbol)
 //         }
+
+//         const newObject = testUnitFactory.createUnit(rowSymbol);
+//         objects.push(newObject);
 //     },
-//     d
+//     true
 // )
-// console.log(res);
-
-const d = []
-const  res = iterateOverLevel(lev1.world,
-    ({element}) => {
-        console.log(element);
-        if (element.type === "P") {
-            d.push(element)
-        }
-    },
-    d
-)
-console.log(res)
 
 
+// // const a = new Menu()
+
+// objects.forEach((object: BasicSlicedObject) => app.stage.addChild(object.view));
+const game = new Game().enter();
+document.body.appendChild(app.view);
+//create a synth and connect it to the main output (your speakers)
+// setTimeout(
+//     () => {
+//         Tone.start()
+//         const synth = new Tone.Synth().toDestination();
+        
+//         //play a middle 'C' for the duration of an 8th note
+//         // const time = new Tone.Unit
+//         synth.triggerAttackRelease("C6", "8n");
+        
+//     }, 2000
+// )
+// // console.log("Performance : ", performance.now()); //todo check about this measure!
+// document.addEventListener("keydown", (e) => {
+//     console.log(e.key);
+
+// });
+
+// document.addEventListener("keyup", (e) => onKeyUp(e));

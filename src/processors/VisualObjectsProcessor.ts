@@ -2,7 +2,7 @@ import { Graphics } from "pixi.js";
 import { UnitDirection } from "../enums/UnitDirectionsEnums";
 import GameModel from "../models/GameModel";
 import UnitModel from "../models/UnitModel";
-import { getRandomColor } from "../utils/utils";
+import Utils from "../utils/utils";
 
 export default class VisualObjectsProcessor {
     framesInit(unit) {
@@ -11,7 +11,7 @@ export default class VisualObjectsProcessor {
         const { unitType, unitMode, scaling, direction, fullWidth, position, objectType } = unit;
         let tempRandColor = 23;
         if (GameModel.configs.randomElementColors) {
-            tempRandColor = getRandomColor();
+            tempRandColor = Utils.getRandomColor();
         } else {
             tempRandColor = 0x60EF35;
         };

@@ -2,8 +2,11 @@ import { UnitMode } from '../enums/UnitModesEnums';
 import { UnitType } from "../enums/UnitTypeEnums";
 import { StaticObjectType } from "../enums/StaticObjectTypeEnums";
 import GameModel from "./GameModel";
+import VisualObjectsProcessor from '../processors/VisualObjectsProcessor';
 
 export default class BasicSlicedObject {
+    
+    protected visualObjectsProcessor = new VisualObjectsProcessor();
     private scaling: number = GameModel.configs.elementsScaling;
     
     private fullWidth = 10; //* How many pixels the unit width is

@@ -15,6 +15,7 @@ export default class GraphProcessor {
         const vertices = [];
         this.lev1.world.forEach((levelRow, rowIndex, level) => {
             levelRow.forEach((rowSymbol, symbolIndex, row) => {
+                // if (GameModel.configs.gameSymbols.some())
                 const vertex = {
                     id: {
                         x: rowSymbol.position.x,

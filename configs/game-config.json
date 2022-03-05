@@ -10,5 +10,45 @@
     "objectsWidthBlocks": 9,
     "objectsHeightBlocks": 10,
     "levelRows": 15,
-    "levelColumns": 28
+    "levelColumns": 28,
+    "gameSymbols": ["#", "C", "H", "-", "*", "_", " ", "X", "P", "E"],
+    "keyBindings": {
+        "player": {
+          "65": [
+            "moveLeft",
+            "right"
+          ],
+          "37": [
+            "moveLeft",
+            "right"
+          ],
+          "68": [
+            "moveRight",
+            "left"
+          ],
+          "39": [
+            "moveRight",
+            "left"
+          ],
+          "83": [
+            "moveDown",
+            "up"
+          ],
+          "40": [
+            "moveDown",
+            "up"
+          ],
+          "87": [
+            "moveUp",
+            "down"
+          ],
+          "38": [
+            "moveUp",
+            "down"
+          ],
+          "88": [
+            "debugger"
+          ]
+        }
+      }
 }

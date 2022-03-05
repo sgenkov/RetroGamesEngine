@@ -10,7 +10,7 @@ export default class UnitFactory {
     private staticUnitSymbols = "#CH-*_ X";
     private liveUnitSymbols = "PE";
     private testConstantX = window.innerWidth / 318;
-    private testConstanty = window.innerHeight/ 170;
+    private testConstanty = window.innerHeight / 170;
 
     private levelObjectMap: Map<string, string> = new Map(
         [
@@ -26,37 +26,44 @@ export default class UnitFactory {
             ["E", "enemy"]
         ]
     );
-    public createUnit(unitSymbol): BasicSlicedObject {
-        if (this.staticUnitSymbols.includes(unitSymbol.type)) {
-            return new StaticUnit(
-                {
-                    x: unitSymbol.position.x * (GameModel.configs.elementsScaling * 10),
-                    y: unitSymbol.position.y * (GameModel.configs.elementsScaling * 11)//window.innerHeight / 15
-                },
-                {
-                    width: 1,
-                    height: 1
-                },
-                null,
-                this.levelObjectMap.get(unitSymbol.type))
-        } else if (this.liveUnitSymbols.includes(unitSymbol.type)) {
-            
-            return new LiveUnit(
-                {
-                    x: unitSymbol.position.x * (GameModel.configs.elementsScaling * 10),
-                    y: unitSymbol.position.y * (GameModel.configs.elementsScaling * 11)
-                },
-                undefined,
-                undefined,
-                undefined,
-                5,
-                undefined,
-                unitSymbol.type === "E" 
-                    ? UnitType.Enemy
-                    : UnitType.Player
+    private createStaticUnit(unitSymbol): StaticUnit {
+        return new StaticUnit(
+            {
+                x: unitSymbol.position.x * (GameModel.configs.elementsScaling * 10),
+                y: unitSymbol.position.y * (GameModel.configs.elementsScaling * 11)//window.innerHeight / 15
+            },
+            {
+                width: 1,
+                height: 1
+            },
+            null,
+            this.levelObjectMap.get(unitSymbol.type))
+    };
 
-            );
-        }
+    private createLiveUnit(unitSymbol): StaticUnit {
+        return new LiveUnit(
+            {
+                x: unitSymbol.position.x * (GameModel.configs.elementsScaling * 10),
+                y: unitSymbol.position.y * (GameModel.configs.elementsScaling * 11)
+            },
+            undefined,
+            undefined,
+            undefined,
+            5,
+            undefined,
+            unitSymbol.type === "E"
+                ? UnitType.Enemy
+                : UnitType.Player
+        );
+    };
+    public createUnit(unitSymbol): BasicSlicedObject {
+        let newUnitCreated: BasicSlicedObject;
+        if (this.staticUnitSymbols.includes(unitSymbol.type)) {
+            newUnitCreated = this.createStaticUnit(unitSymbol);
+        } else if (this.liveUnitSymbols.includes(unitSymbol.type)) {
+            newUnitCreated = this.createLiveUnit(unitSymbol);
+        };
+        return newUnitCreated;
 
     };
 };
