@@ -5,40 +5,34 @@ import unitMatrix from '../rasterworks/unit-matrix.json';
 import objectMatrix from '../rasterworks/object-matrix.json';
 import DebugConfig from '../DebugConfig';
 export default class UnitModel {
-    private matrix: any;
-    public animationFrames: any;
-    public objectType: ObjectType;
-    constructor(objectType) {
+    constructor() {
         DebugConfig.constructors_log && console.log(`${this.constructor.name} constructed`);
-        this.objectType = objectType;
-        // this.animationFrames = unit_config;
-        // this.matrix = matrix;
-        this.createFrames();
-        
     };
 
-    private createFrames() {
+    public static createFrames(objectType) {
+        let matrix;
+        let animationFrames
         
-        if (this.objectType === ObjectType.LiveUnit) {
-            this.matrix = unitMatrix;
-            this.animationFrames = unit_config;
+        if (objectType === ObjectType.LiveUnit) {
+            matrix = unitMatrix;
+            animationFrames = unit_config;
         } else {
-            this.matrix = objectMatrix;
-            this.animationFrames = staticUnit_config;
+            matrix = objectMatrix;
+            animationFrames = staticUnit_config;
         };
-            for (let unit of Object.keys(this.matrix)) {
-                for (let unitMode of Object.keys(this.matrix[unit].modes)) {
-                    this.matrix[unit].modes[unitMode].frames.forEach((frame, index) => {
-                        this.animationFrames[unit].modes[unitMode].frames.push(this.createFrame(index, unitMode, unit))
+            for (let unit of Object.keys(matrix)) {
+                for (let unitMode of Object.keys(matrix[unit].modes)) {
+                    matrix[unit].modes[unitMode].frames.forEach((frame, index) => {
+                        animationFrames[unit].modes[unitMode].frames.push(this.createFrame(index, unitMode, unit, matrix))
                     })
                 };
                 
             };
-        
+        return animationFrames;
     };
-    private createFrame(frameIndex, unitMode, unit) {
+    private static createFrame(frameIndex, unitMode, unit, matrix) {
         const elements = [];
-        this.matrix[unit].modes[unitMode].frames[frameIndex].slices.forEach((slice, sliceIndex) => {
+        matrix[unit].modes[unitMode].frames[frameIndex].slices.forEach((slice, sliceIndex) => {
             slice.split("").forEach((pixel, pixelIndex) => {
                 if (pixel === "1") {
                     elements.push(this.createSlice(pixelIndex, sliceIndex));
@@ -51,7 +45,7 @@ export default class UnitModel {
             "elements": elements
         };
     };
-    private createSlice(pixelIndex, sliceIndex) {
+    private static createSlice(pixelIndex, sliceIndex) {
         return {
             "x": pixelIndex,
             "y": sliceIndex,

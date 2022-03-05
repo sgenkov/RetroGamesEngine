@@ -2,12 +2,10 @@ import { UnitMode } from '../data_types/enums/UnitModesEnums';
 import { UnitType } from "../data_types/enums/UnitTypeEnums";
 import { StaticObjectType } from "../data_types/enums/StaticObjectTypeEnums";
 import GameModel from "./GameModel";
-import VisualObjectsProcessor from '../processors/VisualObjectsProcessor';
 import DebugConfig from '../DebugConfig';
 
 export default class BasicSlicedObject {
     
-    protected visualObjectsProcessor = new VisualObjectsProcessor();
     private scaling: number = GameModel.configs.elementsScaling;
     
     private fullWidth = 10; //* How many pixels the unit width is
@@ -29,13 +27,12 @@ export default class BasicSlicedObject {
         unitType
         
     ) {
-        DebugConfig.constructors_log && console.log(`${this.constructor.name} constructed`);
+        DebugConfig.constructors_log && DebugConfig.single_unit_constructed && console.log(`${this.constructor.name} constructed`);
         
         this.position = position;
         this.size = size;
         this.color = color;
         this.unitType = unitType;
-        // this.frames = visualObjectsProcessor.framesInit(this);
         // this.view = this.frames[0];
     };
 

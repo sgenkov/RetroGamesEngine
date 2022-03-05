@@ -6,6 +6,7 @@ import { ObjectType } from "../data_types/enums/ObjectTypeEnums";
 import GameModel from "./GameModel";
 import App from "../app";
 import DebugConfig from "../DebugConfig";
+import VisualObjectsProcessor from "../processors/VisualObjectsProcessor";
 
 export default class LiveUnit extends BasicSlicedObject {
     private direction: string;
@@ -32,14 +33,14 @@ export default class LiveUnit extends BasicSlicedObject {
             color = 0xFFFFFF,
             unitType,
             );
-            DebugConfig.constructors_log && console.log(`${this.constructor.name} constructed`);
+            DebugConfig.constructors_log && DebugConfig.single_unit_constructed && console.log(`${this.constructor.name} constructed`);
         
         this.baseUpdateInterval = baseUpdateInterval;
         this.updateInterval = this.baseUpdateInterval;
         this.direction = direction;
         this.unitMode = unitMode;
         // this.unitType = unitType;
-        this.frames = this.visualObjectsProcessor.framesInit(this);
+        this.frames = VisualObjectsProcessor.framesInit(this);
         this.view = this.frames[0];
         
     };

@@ -1,30 +1,11 @@
 import * as PIXI from "pixi.js";
 import App from "./app";
-import BasicSlicedObject from "./models/BasicSlicedObject";
-import { UnitDirection } from "./data_types/enums/UnitDirectionsEnums";
-import { UnitMode } from "./data_types/enums/UnitModesEnums";
-import UnitModel from "./models/UnitModel";
-import { UnitType } from "./data_types/enums/UnitTypeEnums";
-import VisualObjectsProcessor from "./processors/VisualObjectsProcessor";
-import LiveUnit from "./models/LiveUnit";
-import StaticUnit from "./models/StaticUnit";
-import { StaticObjectType } from "./data_types/enums/StaticObjectTypeEnums";
-import levels from "../resources/levels.json";
-import LevelFactory from "./factories/LevelFactory";
-import LevelProcessor from "./processors/LevelProcessor";
-import UnitFactory from "./factories/UnitFactory";
-import LevelGraphFactory from "./processors/LevelGraphFactory";
 import GameModel from "./models/GameModel";
-import GraphProcessor from "./processors/GraphProcessor";
-import Utils from "../src/utils/utils";
-import Menu from "./states/Menu";
 import Game from "./states/Game";
 import * as Tone from 'tone'
-import DebugConfig from "./DebugConfig";
 
 window.PIXI = PIXI; //* lemmy try without this row
 
-// export const visualObjectsProcessor = new VisualObjectsProcessor();
 // export const testLevelFactory = new LevelFactory();
 // const testUnitFactory = new UnitFactory();
 

@@ -9,10 +9,13 @@ export default class VisualObjectsProcessor {
     constructor() {
         DebugConfig.constructors_log && console.log(`${this.constructor.name} constructed`);
     }
-    framesInit(unit) {
-        const UNIT_MODEL = new UnitModel(unit.objectType);
+    public static framesInit(unit) {
+        const animationFrames = UnitModel.createFrames(unit.objectType);
         
         const { unitType, unitMode, scaling, direction, fullWidth, position, objectType } = unit;
+        /**
+         * Color of what?
+         */
         let tempRandColor = 23;
         if (GameModel.configs.randomElementColors) {
             tempRandColor = Utils.getRandomColor();
@@ -20,9 +23,9 @@ export default class VisualObjectsProcessor {
             tempRandColor = 0x60EF35;
         };
         const unitAnimationFrames = [];
-            UNIT_MODEL.animationFrames[unitType].modes[unitMode].frames.forEach(frame => {
+            animationFrames[unitType].modes[unitMode].frames.forEach(frame => {
                 
-                unitAnimationFrames.push(this.createFrame(
+                unitAnimationFrames.push(VisualObjectsProcessor.createFrame(
                     frame.id,
                     frame.elements,
                     scaling,
@@ -35,7 +38,7 @@ export default class VisualObjectsProcessor {
 
         return unitAnimationFrames;
     };
-    createFrame = (id, elements, scaling, direction, fullWidth, position, color?) => {
+    private static createFrame = (id, elements, scaling, direction, fullWidth, position, color?) => {
         let graphic = new Graphics();
         graphic["id"] = id;
         elements.forEach(element => {
