@@ -3,12 +3,15 @@ import DebugConfig from "../DebugConfig";
 // import { testLevelFactory } from "../index";
 import GameModel from "../models/GameModel";
 import Level from "../models/Level";
+import ConsoleUtil from "../utils/ConsoleUtil";
+const printInitial = ConsoleUtil.createLog('GraphProcessor', '#F2E517');
+
 export default class GraphProcessor {
     private readonly passableSymbols = ["H", "-", "*", "_", " ", "P", "E", "X"];
     public levelGraph = null;
     public lev1: Level;
     constructor(level) {
-        DebugConfig.constructors_log && console.log(`${this.constructor.name} constructed`);
+        DebugConfig.constructors_log && printInitial(`${this.constructor.name} constructed`);
         this.lev1 = level;//testLevelFactory.getLevel(1); // TODO unify this factory
         // console.log(this.lev1);
     };

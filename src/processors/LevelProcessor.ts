@@ -1,12 +1,15 @@
 import { ILevelObject } from "../data_types/contracts/ILevelObject";
 import { StaticObjectType } from "../data_types/enums/StaticObjectTypeEnums";
-import levels from "../../resources/levels.json";
+import { UnitType } from "../data_types/enums/UnitTypeEnums";
+import { levels } from "../../resources/levels.json";
 import GameModel from "../models/GameModel";
 import exp from "constants";
 import DebugConfig from "../DebugConfig";
+import ConsoleUtil from "../utils/ConsoleUtil";
 
-
-export default class LevelProcessor {
+const print = ConsoleUtil.createLog('LevelProcessor', '#00BEBE');
+const printInitial = ConsoleUtil.createLog('LevelProcessor', '#F2E517');
+class LevelProcessor {
     private levelObjectMap: Map<string, string> = new Map(
         [
             ["#", StaticObjectType.Dirt],
@@ -17,13 +20,13 @@ export default class LevelProcessor {
             ["_", StaticObjectType.Hole],
             [" ", StaticObjectType.Air],
             ["X", StaticObjectType.HiddenLadder],
-            ["P", "player"],
-            ["E", "enemy"]
+            ["E", "enemy"], // ???? Why not accepts ENUM ???
+            ["P", UnitType.Player]
         ]
     );
 
     constructor() {
-        DebugConfig.constructors_log && console.log(`${this.constructor.name} constructed`);
+        DebugConfig.constructors_log && printInitial(`${this.constructor.name} constructed`);
     }
 
     /**
@@ -33,7 +36,7 @@ export default class LevelProcessor {
      */
     public processLevel(levelId: number): ILevelObject[][] {
         const processedWorld: ILevelObject[][] = [];
-        levels.levels[levelId - 1].rows.forEach((worldRow: string, rowIndex: number) => {
+        levels[levelId - 1].rows.forEach((worldRow: string, rowIndex: number) => {
             const processedRow: ILevelObject[] = [];
             worldRow.split("").forEach((rowSymbol: string, rowPositionIndex: number) => {
                 if (GameModel.configs.gameSymbols.some(symbol => symbol === rowSymbol)) {
@@ -54,8 +57,10 @@ export default class LevelProcessor {
             });
             processedWorld.push(processedRow);
         });
-
+        
         return processedWorld;
     };
 
 };
+
+export default new LevelProcessor()

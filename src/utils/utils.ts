@@ -22,7 +22,7 @@ class Utils {
                 try {
                     callback({ row, rowIndex, wholeLevel, rowSymbol, rowSymbolIndex }, acc);
                 } catch(err) {
-                    console.warn("Incorrect configs passed to iterateOverLevel()\n",err);  
+                    console.warn("Incorrect configs passed to iterateOverLevel()\n", err);  
                 };
             });
         });

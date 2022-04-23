@@ -3,6 +3,13 @@ import App from "./app";
 import GameModel from "./models/GameModel";
 import Game from "./states/Game";
 import * as Tone from 'tone'
+import ConsoleUtil from "./utils/ConsoleUtil";
+import LevelGraphFactory from "./processors/LevelGraphFactory";
+import LevelFactory from "./factories/LevelFactory";
+
+const print = ConsoleUtil.createLog('Index', '#00d400');
+
+
 
 window.PIXI = PIXI; //* lemmy try without this row
 
@@ -13,11 +20,12 @@ window.PIXI = PIXI; //* lemmy try without this row
 // const lev1 = testLevelFactory.getLevel(1); // TODO unify this factory
 
 // const testLevelGraph: any[] = new LevelGraphFactory(lev1).levelGraph;
+// console.log("testLevelGraph : ", testLevelGraph); 
+
 export const app = new App(GameModel.configs.appConfig);
 
 window.addEventListener("resize", () => { //todo take care of this later
-    console.log('RESIZE');
-    
+    console.log('RESIZE');    
 });
 
 

@@ -8,23 +8,42 @@ import State from './State';
 // import { app } from '..';
 import App from '../app';
 import DebugConfig from '../DebugConfig';
+import ConsoleUtil from '../utils/ConsoleUtil';
+import LevelGraphFactory from '../processors/LevelGraphFactory';
+const print = ConsoleUtil.createLog('Game', '#00BEBE');
+const printInitial = ConsoleUtil.createLog('Game', '#F2E517');
+
+/**
+ * This is the play state of the game.It holds the current level.
+ */
 export default class Game extends State {
     
     public currentLevel: Level;
     private currentLevelIndex: number = 1;
-    private readonly unitFactory = new UnitFactory();
-    private readonly levelFactory = new LevelFactory();
+    private unitFactory = null;
+    private levelFactory = null;
+    private graphFactory = null;
+    private levelGraph: any[] = null;
 
     constructor() {
         super();
-        DebugConfig.constructors_log && console.log(`${this.constructor.name} constructed`);
+        DebugConfig.constructors_log && printInitial(`${this.constructor.name} constructed`);
         
-        this.currentLevel = this.levelFactory.getLevel(this.currentLevelIndex)
+        this.init();
     };
+    private init() {
+        this.levelFactory = new LevelFactory();
+        this.unitFactory = new UnitFactory();
+        this.currentLevel = this.levelFactory.getLevel(this.currentLevelIndex)
+        this.graphFactory = new LevelGraphFactory(this.currentLevel);
+        this.levelGraph = this.graphFactory.levelGraph;
+        console.log("this.levelGraph : ", this.levelGraph);  
+        
+    }
     public enter() {
         this.processView();
         super.enter();
-        //TODO Move the listeners somewhere
+        //TODO Move the listeners somewhere 
         document.addEventListener("keydown", (e) => {//TODO next handle events for the controls
             DebugConfig.keyboard_listeners && console.log(e.key);
         });
@@ -46,7 +65,7 @@ export default class Game extends State {
     public tickUpdate() {
         // console.log('UPDATE FN');
 
-        App.instance.stage.removeChildren();
+        App.instance.stage.removeChildren(); // ? Obsolete?
         this.objects.forEach(object => {
             object.update();
             App.instance.stage.addChild(object.view)

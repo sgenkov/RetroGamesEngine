@@ -6,6 +6,10 @@ import LiveUnit from "../models/LiveUnit";
 import StaticUnit from "../models/StaticUnit";
 import GameModel from "../models/GameModel";
 import DebugConfig from "../DebugConfig";
+import ConsoleUtil from "../utils/ConsoleUtil";
+const print = ConsoleUtil.createLog('UnitFactory', '#CFF858');
+const printInitial = ConsoleUtil.createLog('UnitFactory', '#F2E517');
+
 
 export default class UnitFactory {
     private staticUnitSymbols = "#CH-*_ X";
@@ -29,7 +33,7 @@ export default class UnitFactory {
     );
 
     constructor() {
-        DebugConfig.constructors_log && console.log(`${this.constructor.name} constructed`);
+        DebugConfig.constructors_log && printInitial(`${this.constructor.name} constructed`);
     }
     private createStaticUnit(unitSymbol): StaticUnit {
         return new StaticUnit(

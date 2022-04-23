@@ -7,6 +7,10 @@ import GameModel from "./GameModel";
 import App from "../app";
 import DebugConfig from "../DebugConfig";
 import VisualObjectsProcessor from "../processors/VisualObjectsProcessor";
+import ConsoleUtil from "../utils/ConsoleUtil";
+import ISpeed from "../../src/data_types/contracts/ISpeed"
+const print = ConsoleUtil.createLog('LiveUnit', '#CFF858');
+const printInitial = ConsoleUtil.createLog('LiveUnit', '#F2E517');
 
 export default class LiveUnit extends BasicSlicedObject {
     private direction: string;
@@ -17,12 +21,12 @@ export default class LiveUnit extends BasicSlicedObject {
     private objectType: ObjectType = ObjectType.LiveUnit;
     public behaviors: any[] = [];
 
-    public speed: { x: number, y: number} = { x:0, y:0 };
+    public speed: ISpeed = { x:0, y:0 };
     constructor(
         position = { x: 0, y: 0 },
         size = { width: 0, height: 0 },
         color = 0xFFFFFF,
-        direction = UnitDirection.Right,
+        direction = UnitDirection.Left,
         baseUpdateInterval = 0,
         unitMode = UnitMode.Walking,
         unitType = UnitType.Player
@@ -33,7 +37,7 @@ export default class LiveUnit extends BasicSlicedObject {
             color = 0xFFFFFF,
             unitType,
             );
-            DebugConfig.constructors_log && DebugConfig.single_unit_constructed && console.log(`${this.constructor.name} constructed`);
+            DebugConfig.constructors_log && DebugConfig.single_unit_constructed && printInitial(`${this.constructor.name} constructed`);
         
         this.baseUpdateInterval = baseUpdateInterval;
         this.updateInterval = this.baseUpdateInterval;
