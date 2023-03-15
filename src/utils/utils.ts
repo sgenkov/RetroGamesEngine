@@ -1,3 +1,4 @@
+import { ILevelObject } from "../data_types/contracts/ILevelObject";
 import DebugConfig from "../DebugConfig";
 
 class Utils {
@@ -15,7 +16,7 @@ class Utils {
      * @param pushResultToReturn A flag that determines whether the function returns result as an array or it is void function
      * @returns any[] | undefined
      */
-    public iterateOverLevel(level: any[], callback: (...rest) => any, pushResultToReturn: boolean) {
+    public iterateOverLevel(level: ILevelObject[][], callback: (...rest) => any, pushResultToReturn: boolean) {
         let acc: any[] = pushResultToReturn ? new Array<any>() : undefined;
         level.forEach((row, rowIndex, wholeLevel) => {
             row.forEach((rowSymbol, rowSymbolIndex) => {

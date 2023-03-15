@@ -1,6 +1,5 @@
 import { IState } from "../data_types/contracts/IState";
-import { app } from '..';
-import App from "../app";
+import App from "../App";
 import DebugConfig from "../DebugConfig";
 import ConsoleUtil from "../utils/ConsoleUtil";
 const printState = ConsoleUtil.createLog('State', '#00BEBE');

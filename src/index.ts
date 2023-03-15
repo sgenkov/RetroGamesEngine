@@ -1,5 +1,5 @@
 import * as PIXI from "pixi.js";
-import App from "./app";
+import App from "./App";
 import GameModel from "./models/GameModel";
 import Game from "./states/Game";
 import * as Tone from 'tone'
