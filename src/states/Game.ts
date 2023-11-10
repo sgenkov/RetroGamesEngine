@@ -6,10 +6,10 @@ import BasicSlicedObject from '../models/BasicSlicedObject';
 import Level from '../models/Level';
 import State from './State';
 // import { app } from '..';
-import App from '../app';
 import DebugConfig from '../DebugConfig';
 import ConsoleUtil from '../utils/ConsoleUtil';
 import LevelGraphFactory from '../processors/LevelGraphFactory';
+import App from '../App';
 const print = ConsoleUtil.createLog('Game', '#00BEBE');
 const printInitial = ConsoleUtil.createLog('Game', '#F2E517');
 
@@ -64,7 +64,6 @@ export default class Game extends State {
 
     public tickUpdate() {
         // console.log('UPDATE FN');
-
         App.instance.stage.removeChildren(); // ? Obsolete?
         this.objects.forEach(object => {
             object.update();

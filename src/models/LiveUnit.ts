@@ -4,7 +4,7 @@ import { UnitType } from "../data_types/enums/UnitTypeEnums";
 import BasicSlicedObject from "./BasicSlicedObject";
 import { ObjectType } from "../data_types/enums/ObjectTypeEnums";
 import GameModel from "./GameModel";
-import App from "../app";
+import App from "../App";
 import DebugConfig from "../DebugConfig";
 import VisualObjectsProcessor from "../processors/VisualObjectsProcessor";
 import ConsoleUtil from "../utils/ConsoleUtil";
